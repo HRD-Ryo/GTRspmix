@@ -4,7 +4,7 @@ Profiles are clustered into several groups. Then each group has own GTR matrix.
 
 Details are shown in our paper. Please cite it if you find this useful.  
 
-> **Ryo Harada _et. al._ (2026). GTRspmix: Capturing Heterogeneity of Exchangeability Across Sites via Profile Clustering to Improve Protein Phylogenetics.** (In preparation).
+> **Ryo Harada _et. al._ (2026). GTRspmix: Capturing Heterogeneity of Exchangeability Across Sites to Improve Protein Phylogenetics.** (In preparation).
 
 ## Table of Contents
 1. [Overview](#1-overview)
@@ -21,7 +21,7 @@ Details are shown in our paper. Please cite it if you find this useful.
 ## 1. Overview
 This script iteratively optimizes GTRspmix model parameters by repeating specific steps (EM approximation). Use `--opt-gtr` and/or `--opt-profile-FO`/`--opt-profile-F` to enable the corresponding optimization phases.
 
-Each iteration consists of two main phases. Each phase is is only executed if its corresponding flag is enabled.
+Each iteration consists of two main phases. Each phase is only executed if its corresponding flag is enabled.
 
 | Phase | Step | Optimized params | Fixed params | Required flags |
 |:--:|:--:|:--:|:--:|:--:|
@@ -55,20 +55,20 @@ GTRspmix script has been tested with following specific versions:
 - [IQ-TREE](https://github.com/iqtree/iqtree3) v3.0.1 
 - [gotree](https://github.com/evolbioinfo/gotree) v0.4.5 
 
-### 2.3. Installation via Singularity (Recommended)
+### 2.3.a. Installation via Singularity (Recommended)
 [Singularity](https://github.com/sylabs/singularity) is highly recommended for HPC clusters to ensure the reproducibility of the environment. The Singularity image includes both IQ-TREE and gotree.
 ```
 sudo singularity build gtrspmix.sif singularity.def
 singularity run gtrspmix.sif -h
 ```
 
-### 2.4. Manual Installation
+### 2.3.b. Manual Installation
 If you prefer not to use Singulairty, you have to install IQ-TREE and gotree on your system.  
 Then python requirements will be installed by 
 ```
 pip install -r requirements.txt
 ```
-If iqtree and gotree are not available in your system `$PATH`, you must specify their absolute paths using the following flags during execution:
+If IQ-TREE and gotree are not available in your system `$PATH`, you must specify their absolute paths using the following flags during execution:
 - `--iqtree /path/to/iqtree3`
 - `--gotree /path/to/gotree`
 
