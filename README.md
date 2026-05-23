@@ -6,6 +6,11 @@ Details are shown in our paper. Please cite it if you find this useful.
 
 > **Ryo Harada _et. al._ (2026). GTRspmix: Capturing Heterogeneity of Exchangeability Across Sites to Improve Protein Phylogenetics.** (In preparation).
 
+**Note**: We are planning to update scripts to use real EM instead of approximation.
+
+---
+
+
 ## Table of Contents
 1. [Overview](#1-overview)
 2. [Dependencies & Installation](#2-dependencies--installation)
@@ -52,7 +57,7 @@ Unzip the downloaded archive and navigate to the directory:
 ### 2.2. Software Requirements
 GTRspmix script has been tested with following specific versions:
 - Python v3.11.15
-- [IQ-TREE](https://github.com/iqtree/iqtree3) v3.0.1 
+- [IQ-TREE](https://github.com/iqtree/iqtree3) v2.3.4/v3.0.1/v3.1.1 
 - [gotree](https://github.com/evolbioinfo/gotree) v0.4.5 
 
 ### 2.3.a. Installation via Singularity (Recommended)
@@ -92,7 +97,7 @@ Select a mode based on your starting input.
 | FromScratch<br> (SPPC) | `--nexus-few` & <br> `--nexus-many` | Cluster a large profile set (e.g. MEOW60) into fewer groups (e.g. 10). | 
 | FromScratch<br> (K-means) | `--nexus` & <br> `-km` | Directly cluster profiles using K-means. | 
 | ReStart | `--nexus` & <br> `--json` | Resume an interrupted run using a model and clustering JSON from previous run. |
-| PreDefined | `--model` | Fine-tune an empirical GTRspmix model (e.g., S10C60). |
+| PreDefined | `--model` | Fine-tune an empirical GTRspmix model (e.g., S10pfamC60). |
 
 ### 3.3. Select Parameters to be Optimized
 You can control which parameters are optimized using the following flags:
@@ -176,13 +181,13 @@ gtrspmix.py \
 -o GTRspmix_out_restart
 ```
 
-### Fine-ture S10C60 model
+### Fine-ture S10pfamC60 model
 ```bash
 gtrspmix.py \
 --opt-gtr \
 -s alignment.fasta \
 -te guide.treefile \
---model S10C60 \
+--model S10pfamC60 \
 -m-rate G4 \
 --scale-gtr 10 \
 -me-theta 0.01 \
