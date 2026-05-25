@@ -163,14 +163,14 @@ gtrspmix.py \
 ```
 
 ### Optimize 10 GTRs with MEOW60 profiles (Restarting)
-When you restart runs, please specify new output directory.
+When you restart runs, please copy latest nexus file and d_cluster.json file. Then specify new output directory.
 ```bash
 gtrspmix.py \
 --opt-gtr \
 -s alignment.fasta \
 -te guide.treefile \
 --json d_cluster.json \
---nexus meow_60.nex \
+--nexus model_best.nex \
 -m-rate G4 \
 --scale-gtr 10 \
 -me-theta 0.01 \
