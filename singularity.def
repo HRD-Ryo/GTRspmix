@@ -1,0 +1,59 @@
+Bootstrap: docker
+From: python:3.11
+
+%labels
+    Author: Ryo Harada
+    Usage: sudo singularity build gtrspmix.sif singularity.def
+
+%files
+    . /gtrspmix/
+
+%post
+    # version
+    export IQTREE_VERSION=3.1.1
+    export GOTREE_VERSION=0.4.5
+
+    # installation
+    export DEBIAN_FRONTEND="noninteractive"
+    apt-get update
+    apt-get install -y \
+    wget
+    
+    # python3 packages
+    python3 -m pip install -U pip
+    python3 -m pip install -r /gtrspmix/requirements.txt
+    
+    # iqtree
+    wget https://github.com/iqtree/iqtree3/releases/download/v${IQTREE_VERSION}/iqtree-${IQTREE_VERSION}-Linux-intel.tar.gz
+    tar -zxvf iqtree-${IQTREE_VERSION}-Linux-intel.tar.gz
+    mkdir /iqtree/
+    cp iqtree-${IQTREE_VERSION}-Linux-intel/bin/iqtree* /iqtree/
+    chmod a+x /iqtree/iqtree*
+    rm iqtree-${IQTREE_VERSION}-Linux-intel.tar.gz
+    rm -r iqtree-${IQTREE_VERSION}-Linux-intel
+    
+    # gotree
+    wget https://github.com/evolbioinfo/gotree/releases/download/v${GOTREE_VERSION}/gotree_v${GOTREE_VERSION}_amd64_linux
+    mkdir /gotree/
+    mv gotree_v${GOTREE_VERSION}_amd64_linux /gotree/gotree
+    chmod a+x /gotree/gotree
+    
+    # GTRspmix script
+    chmod a+x gtrspmix/gtrspmix.py
+    
+    apt-get clean
+    export DEBIAN_FRONTEND=""
+
+
+%environment
+    export PATH=/gtrspmix:/iqtree:/gotree:$PATH
+
+
+%runscript
+    python3 /gtrspmix/gtrspmix.py $@
+
+
+%startscript
+    python3 /gtrspmix/gtrspmix.py $@
+
+
