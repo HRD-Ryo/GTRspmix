@@ -4,9 +4,9 @@ Profiles are clustered into several groups. Then each group has own GTR matrix.
 
 Details are shown in our paper. Please cite it if you find this useful.  
 
-> **Ryo Harada _et. al._ (2026). GTRspmix: Capturing Heterogeneity of Exchangeability Across Sites to Improve Protein Phylogenetics.** (In preparation).
+> **Ryo Harada _et. al._ (2026). GTRspmix: Capturing Heterogeneity of Exchangeability Across Sites to Improve Protein Phylogenetics.** _bioRxiv_. [doi.org/10.64898/2026.06.18.729217](https://doi.org/10.64898/2026.06.18.729217)
 
-**Note**: We are planning to update scripts to use real EM instead of approximation.
+**Note**: We are planning to update scripts to use real EM instead of approximation, and implementing GTRspmix estimation in IQ-TREE.
 
 ---
 
